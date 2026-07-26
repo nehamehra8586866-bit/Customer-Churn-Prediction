@@ -1,8 +1,5 @@
 # Customer-Churn-Prediction
 Customer Churn Prediction using Machine Learning and Streamlit
-<<<<<<< HEAD
-![Customer Churn App](images/Screenshot 2026-07-27 040623.png)
-=======
 -------------------------------------------------------------------
 ## Project Overview
 Customer churn is one of the biggest challenges for telecom companies. This project predicts whether a customer is likely to leave the company (Churn) or stay, using Machine Learning algorithms.
@@ -128,4 +125,6 @@ Aspiring Associate Data Scientist
 ---
 
 ⭐ If you found this project useful, consider giving it a Star!
->>>>>>> 1ce9c75764b3b3b19dce3aaf0effe0fc933cc75e
+<p align="center">
+  <img src="images/app_home.png" width="1000">
+</p>
