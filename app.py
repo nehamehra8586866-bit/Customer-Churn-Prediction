@@ -1,3 +1,5 @@
+from pyexpat import model
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -144,3 +146,71 @@ predict = st.button(
     "🔍 Predict Customer Churn",
     use_container_width=True
 )
+
+if predict:
+
+    input_data = pd.DataFrame(0, index=[0], columns=feature_columns)
+
+    input_data["gender"] = gender
+    input_data["SeniorCitizen"] = senior
+    input_data["Partner"] = partner
+    input_data["Dependents"] = dependents
+    input_data["tenure"] = tenure
+    input_data["PhoneService"] = phone
+    input_data["MultipleLines"] = multiple
+    input_data["OnlineSecurity"] = security
+    input_data["OnlineBackup"] = backup
+    input_data["DeviceProtection"] = device
+    input_data["TechSupport"] = support
+    input_data["StreamingTV"] = tv
+    input_data["StreamingMovies"] = movies
+    input_data["PaperlessBilling"] = paperless
+    input_data["MonthlyCharges"] = monthly
+    input_data["TotalCharges"] = total
+
+    if internet == "Fiber optic":
+        input_data["InternetService_Fiber optic"] = 1
+    elif internet == "No":
+        input_data["InternetService_No"] = 1
+
+    if contract == "One year":
+        input_data["Contract_One year"] = 1
+    elif contract == "Two year":
+        input_data["Contract_Two year"] = 1
+
+    if payment == "Credit card (automatic)":
+        input_data["PaymentMethod_Credit card (automatic)"] = 1
+    elif payment == "Electronic check":
+        input_data["PaymentMethod_Electronic check"] = 1
+    elif payment == "Mailed check":
+        input_data["PaymentMethod_Mailed check"] = 1
+
+    input_data["gender"] = input_data["gender"].map({"Male": 1, "Female": 0})
+
+    input_data["SeniorCitizen"] = input_data["SeniorCitizen"].map({"Yes": 1, "No": 0})
+
+    yes_no_cols = [
+        "Partner",
+        "Dependents",
+        "PhoneService",
+        "MultipleLines",
+        "OnlineSecurity",
+        "OnlineBackup",
+        "DeviceProtection",
+        "TechSupport",
+        "StreamingTV",
+        "StreamingMovies",
+        "PaperlessBilling"
+    ]
+
+    for col in yes_no_cols:
+        input_data[col] = input_data[col].map({"Yes": 1, "No": 0})
+
+    input_scaled = scaler.transform(input_data)
+
+    prediction = logistic_model.predict(input_scaled)
+
+    if prediction[0] == 1:
+        st.error("Customer is likely to Churn")
+    else:
+        st.success("Customer is likely to Stay")
