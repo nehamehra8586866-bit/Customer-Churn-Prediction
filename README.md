@@ -102,7 +102,7 @@ pip install -r requirements.txt
 Run the Streamlit application
 
 ```bash
-streamlit run app.py
+streamlit run app.py. Live Demo :-  [  https://neha-customer-churn-prediction.streamlit.app/  ]
 ```
 
 ---
